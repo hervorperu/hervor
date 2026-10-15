@@ -1,0 +1,167 @@
+/* ==========================================================
+   Hervor — Landing "Próximamente"
+   Colores y proporciones tomados del diseño de Canva
+   ========================================================== */
+
+:root {
+  --purple: #452959;      /* fondo */
+  --gold: #d6a74e;        /* logo y botones */
+  --gold-hover: #e2b762;
+  --cream: #ede9e6;       /* textos sobre el morado */
+  --ink: #fbf7f1;         /* texto de los botones */
+
+  --font-display: "Montserrat", system-ui, sans-serif;
+  --font-button: "Nunito Sans", system-ui, sans-serif;
+
+  --pill-w: clamp(16rem, 27vw, 21rem);
+  --pill-h: clamp(3.1rem, 5.2vw, 3.4rem);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: var(--purple);
+  color: var(--cream);
+  font-family: var(--font-display);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- Composición ---------- */
+.landing {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(1rem, 3vh, 2rem) 1rem clamp(2rem, 5vh, 3rem);
+  text-align: center;
+}
+
+.landing__logo {
+  margin: 0;
+  width: min(44vw, 34rem);
+  line-height: 0;
+}
+.landing__logo img { width: 100%; height: auto; }
+
+.landing__title {
+  margin: clamp(2.5rem, 7vh, 4.5rem) 0 0;
+  font-weight: 700;
+  font-size: clamp(1.8rem, 3.6vw, 2.6rem);
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+
+.landing__tagline {
+  margin: clamp(2rem, 6vh, 3.6rem) 0 0;
+  font-style: italic;
+  font-weight: 600;
+  font-size: clamp(1.15rem, 2vw, 1.45rem);
+}
+
+.landing__links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(1rem, 2.6vh, 1.6rem);
+  margin-top: clamp(1.6rem, 3.5vh, 2.2rem);
+  width: 100%;
+}
+
+/* ---------- Botón píldora (componente reutilizable) ---------- */
+.pill {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: min(var(--pill-w), 100%);
+  height: var(--pill-h);
+  padding: 0 1.25rem 0 3.6rem;
+  border-radius: 999px;
+  background: var(--gold);
+  color: var(--ink);
+  font-family: var(--font-button);
+  font-weight: 800;
+  font-size: clamp(1rem, 1.45vw, 1.06rem);
+  text-decoration: none;
+  box-shadow: 0 0 0 0 rgba(214, 167, 78, 0);
+  transition: transform .25s ease, background-color .25s ease, box-shadow .25s ease;
+}
+
+.pill__icon {
+  position: absolute;
+  left: 0.85rem;
+  top: 50%;
+  width: calc(var(--pill-h) * 0.68);
+  height: calc(var(--pill-h) * 0.68);
+  transform: translateY(-50%);
+}
+
+.pill:hover {
+  background: var(--gold-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px -10px rgba(0, 0, 0, .45);
+}
+.pill:active { transform: translateY(0); }
+.pill:focus-visible {
+  outline: 3px solid var(--cream);
+  outline-offset: 4px;
+}
+
+/* ---------- Aviso (enlaces aún no configurados) ---------- */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 1.5rem;
+  margin: 0;
+  width: max-content;
+  max-width: calc(100% - 2rem);
+  padding: .8rem 1.3rem;
+  border-radius: 1rem;
+  line-height: 1.35;
+  background: var(--cream);
+  color: var(--purple);
+  font-weight: 700;
+  font-size: .95rem;
+  transform: translate(-50%, 0);
+  box-shadow: 0 10px 30px -12px rgba(0, 0, 0, .5);
+  animation: toast-in .3s ease;
+}
+@keyframes toast-in {
+  from { opacity: 0; transform: translate(-50%, 10px); }
+}
+
+/* ---------- Animación de entrada ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  animation: reveal .8s cubic-bezier(.2, .7, .2, 1) forwards;
+  animation-delay: calc(var(--i, 0) * 110ms + 100ms);
+}
+@keyframes reveal { to { opacity: 1; transform: none; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { animation: none; opacity: 1; transform: none; }
+  .pill, .toast { transition: none; animation: none; }
+}
+
+/* ---------- Móvil ---------- */
+@media (max-width: 600px) {
+  .landing { justify-content: flex-start; padding-top: 18vh; }
+  .landing__logo { width: min(78vw, 22rem); }
+  .landing__title { margin-top: 2.6rem; }
+  .landing__tagline { margin-top: 2rem; }
+}
+
+/* Pantallas bajas en horizontal (p. ej. móvil girado) */
+@media (max-height: 520px) and (orientation: landscape) {
+  .landing { justify-content: flex-start; padding-top: 1.5rem; }
+  .landing__title { margin-top: 1.5rem; }
+  .landing__tagline { margin-top: 1rem; }
+}
