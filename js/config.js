@@ -8,7 +8,7 @@
  */
 window.HERVOR_CONFIG = {
   links: {
-    instagram: "", // p. ej. "https://www.instagram.com/TU_USUARIO/"
+    instagram: "https://www.instagram.com/hervor_pe/", // p. ej. "https://www.instagram.com/TU_USUARIO/"
     tiktok: "",    // p. ej. "https://www.tiktok.com/@TU_USUARIO"
     carta: "",     // p. ej. "assets/carta/carta-hervor.pdf"
   },
