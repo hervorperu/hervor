@@ -13,6 +13,7 @@ hervor-web/
 ├── assets/img/
 │   ├── logo-hervor.png     Logo (extraído del diseño, fondo transparente)
 │   └── favicon.png         Icono de la pestaña (llama del logo)
+├── carta.pdf               Carta de Hervor (se abre en /carta.pdf)
 ├── docs/diseno-referencia.png   Diseño original de Canva
 └── robots.txt
 ```
@@ -36,8 +37,8 @@ Edita `js/config.js` y rellena:
 
 - `instagram`: URL del perfil de Instagram.
 - `tiktok`: URL del perfil de TikTok.
-- `carta`: enlace a la carta. Puede ser un PDF dentro del proyecto
-  (crea `assets/carta/` y pon ahí, por ejemplo, `carta-hervor.pdf`) o un enlace externo.
+- `carta`: ya apunta a `carta.pdf`. Para actualizar la carta basta con
+  reemplazar ese archivo por la nueva versión exportada de Canva (mismo nombre).
 
 Mientras un enlace esté vacío, el botón muestra el aviso "¡Muy pronto!…".
 
