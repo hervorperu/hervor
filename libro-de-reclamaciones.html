@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Libro de Reclamaciones — Hervor</title>
+  <meta name="description" content="Libro de Reclamaciones Virtual de Hervor. Registra tu reclamo o queja en línea y recibe tu constancia por correo.">
+  <meta name="theme-color" content="#452959">
+  <link rel="canonical" href="/libro-de-reclamaciones">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/assets/img/favicon-192.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,600&family=Nunito+Sans:opsz,wght@6..12,800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/paginas.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="site-header__home" href="/" aria-label="Hervor — volver al inicio">
+      <img src="/assets/img/logo-hervor.png" alt="Hervor" width="887" height="256">
+    </a>
+  </header>
+
+  <main class="pagina">
+    <div class="pagina__intro">
+      <svg class="pagina__icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 6.5C10.2 5 7.6 4.4 3.5 4.5v13c4.1-.1 6.7.5 8.5 2 1.8-1.5 4.4-2.1 8.5-2v-13c-4.1-.1-6.7.5-8.5 2Z"/>
+        <path d="M12 6.5v13.1"/>
+      </svg>
+      <h1 class="pagina__titulo">Libro de Reclamaciones</h1>
+      <p class="pagina__lead">Hoja de reclamación virtual. Completa el formulario y te enviaremos una copia a tu correo.</p>
+    </div>
+
+    <!-- Encabezado fijo de la hoja (Anexo I) -->
+    <section class="hoja-cabecera" aria-label="Datos de la hoja de reclamación">
+      <dl class="hoja-cabecera__datos">
+        <div><dt>Proveedor</dt><dd>MILTON CESAR NICOLAS BRUNO</dd></div>
+        <div><dt>RUC</dt><dd>10755112963</dd></div>
+        <div class="hoja-cabecera__ancho"><dt>Domicilio</dt><dd>CALLE ISLA SAN LORENZO 169</dd></div>
+        <div><dt>Fecha y hora</dt><dd><span data-reloj>—</span> <small>(hora de Lima)</small></dd></div>
+        <div><dt>Hoja N°</dt><dd><span class="hoja-cabecera__pendiente">Se asigna al enviar</span></dd></div>
+      </dl>
+    </section>
+
+    <form class="libro" id="libro" novalidate>
+      <div class="aviso aviso--error" id="resumen-errores" tabindex="-1" hidden></div>
+
+      <!-- 1 -->
+      <fieldset class="seccion">
+        <legend class="seccion__titulo"><span class="seccion__num">1</span> Identificación del consumidor reclamante</legend>
+
+        <div class="campo campo--ancho">
+          <label for="consumidor_nombre">Nombre completo <span class="req" aria-hidden="true">*</span></label>
+          <input id="consumidor_nombre" name="consumidor_nombre" type="text" autocomplete="name" maxlength="120" required>
+        </div>
+
+        <div class="campo">
+          <span class="campo__label" id="lbl-tipo-doc">Tipo de documento <span class="req" aria-hidden="true">*</span></span>
+          <div class="opciones" role="radiogroup" aria-labelledby="lbl-tipo-doc" data-campo="tipo_documento">
+            <label class="opcion"><input type="radio" name="tipo_documento" value="DNI" checked><span>DNI</span></label>
+            <label class="opcion"><input type="radio" name="tipo_documento" value="CE"><span>Carné de extranjería</span></label>
+          </div>
+        </div>
+
+        <div class="campo">
+          <label for="numero_documento">N° de documento <span class="req" aria-hidden="true">*</span></label>
+          <input id="numero_documento" name="numero_documento" type="text" inputmode="numeric" autocomplete="off" maxlength="12" required>
+        </div>
+
+        <div class="campo campo--ancho">
+          <label for="domicilio">Domicilio <span class="req" aria-hidden="true">*</span></label>
+          <input id="domicilio" name="domicilio" type="text" autocomplete="street-address" maxlength="200" required>
+        </div>
+
+        <div class="campo">
+          <label for="telefono">Teléfono <span class="req" aria-hidden="true">*</span></label>
+          <input id="telefono" name="telefono" type="tel" autocomplete="tel" maxlength="20" required>
+        </div>
+
+        <div class="campo">
+          <label for="email">Correo electrónico <span class="req" aria-hidden="true">*</span></label>
+          <input id="email" name="email" type="email" autocomplete="email" maxlength="120" required>
+        </div>
+
+        <div class="campo campo--ancho">
+          <label class="check">
+            <input type="checkbox" name="es_menor" id="es_menor">
+            <span class="check__caja" aria-hidden="true"></span>
+            <span>Soy menor de edad</span>
+          </label>
+        </div>
+
+        <div class="campo campo--ancho" id="campo-apoderado" hidden>
+          <label for="apoderado_nombre">Nombre del padre, madre o apoderado <span class="req" aria-hidden="true">*</span></label>
+          <input id="apoderado_nombre" name="apoderado_nombre" type="text" maxlength="120">
+        </div>
+      </fieldset>
+
+      <!-- 2 -->
+      <fieldset class="seccion">
+        <legend class="seccion__titulo"><span class="seccion__num">2</span> Identificación del bien contratado</legend>
+
+        <div class="campo">
+          <span class="campo__label" id="lbl-bien">Tipo <span class="req" aria-hidden="true">*</span></span>
+          <div class="opciones" role="radiogroup" aria-labelledby="lbl-bien" data-campo="bien_tipo">
+            <label class="opcion"><input type="radio" name="bien_tipo" value="Producto"><span>Producto</span></label>
+            <label class="opcion"><input type="radio" name="bien_tipo" value="Servicio"><span>Servicio</span></label>
+          </div>
+        </div>
+
+        <div class="campo">
+          <label for="monto_reclamado">Monto reclamado <span class="opcional">(opcional)</span></label>
+          <div class="prefijo">
+            <span aria-hidden="true">S/</span>
+            <input id="monto_reclamado" name="monto_reclamado" type="text" inputmode="decimal" placeholder="0.00" maxlength="10">
+          </div>
+        </div>
+
+        <div class="campo campo--ancho">
+          <label for="bien_descripcion">Descripción <span class="req" aria-hidden="true">*</span></label>
+          <textarea id="bien_descripcion" name="bien_descripcion" rows="3" maxlength="500" required placeholder="¿Qué producto o servicio fue? Por ejemplo: emoliente La Fresquita 16 oz."></textarea>
+        </div>
+      </fieldset>
+
+      <!-- 3 -->
+      <fieldset class="seccion">
+        <legend class="seccion__titulo"><span class="seccion__num">3</span> Detalle de la reclamación y pedido del consumidor</legend>
+
+        <div class="campo campo--ancho">
+          <span class="campo__label" id="lbl-tipo">Tipo <span class="req" aria-hidden="true">*</span></span>
+          <div class="tarjetas" role="radiogroup" aria-labelledby="lbl-tipo" data-campo="tipo">
+            <label class="tarjeta">
+              <input type="radio" name="tipo" value="Reclamo">
+              <span class="tarjeta__cuerpo">
+                <span class="tarjeta__titulo">Reclamo</span>
+                <span class="tarjeta__texto">Disconformidad relacionada a los productos o servicios.</span>
+              </span>
+            </label>
+            <label class="tarjeta">
+              <input type="radio" name="tipo" value="Queja">
+              <span class="tarjeta__cuerpo">
+                <span class="tarjeta__titulo">Queja</span>
+                <span class="tarjeta__texto">Disconformidad no relacionada a los productos o servicios; o malestar o descontento respecto a la atención al público.</span>
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <div class="campo campo--ancho">
+          <label for="detalle">Detalle <span class="req" aria-hidden="true">*</span></label>
+          <textarea id="detalle" name="detalle" rows="6" maxlength="3000" required placeholder="Cuéntanos qué pasó, cuándo y dónde."></textarea>
+          <span class="contador" data-contador="detalle"></span>
+        </div>
+
+        <div class="campo campo--ancho">
+          <label for="pedido">Pedido <span class="req" aria-hidden="true">*</span></label>
+          <textarea id="pedido" name="pedido" rows="3" maxlength="1500" required placeholder="¿Qué solución esperas?"></textarea>
+          <span class="contador" data-contador="pedido"></span>
+        </div>
+      </fieldset>
+
+      <!-- Declaraciones -->
+      <fieldset class="seccion seccion--checks">
+        <legend class="visually-hidden">Declaraciones</legend>
+
+        <div class="campo campo--ancho">
+          <label class="check">
+            <input type="checkbox" name="declara_veracidad" id="declara_veracidad" required>
+            <span class="check__caja" aria-hidden="true"></span>
+            <span>Declaro que la información proporcionada es verdadera. <span class="req" aria-hidden="true">*</span></span>
+          </label>
+        </div>
+
+        <div class="campo campo--ancho">
+          <label class="check">
+            <input type="checkbox" name="acepta_tratamiento_datos" id="acepta_tratamiento_datos" required>
+            <span class="check__caja" aria-hidden="true"></span>
+            <span>Autorizo el tratamiento de mis datos personales para la atención de esta hoja de reclamación, conforme a la Ley N° 29733 y a la <a href="/politica-de-privacidad" target="_blank" rel="noopener">política de privacidad</a>. <span class="req" aria-hidden="true">*</span></span>
+          </label>
+        </div>
+      </fieldset>
+
+      <!-- Anti-spam: campo trampa invisible para personas -->
+      <div class="trampa" aria-hidden="true">
+        <label for="sitio_web">No completar</label>
+        <input id="sitio_web" name="sitio_web" type="text" tabindex="-1" autocomplete="off">
+      </div>
+
+      <div class="aviso aviso--error" id="error-envio" role="alert" hidden></div>
+
+      <div class="libro__acciones">
+        <button class="pill pill--boton" type="submit" id="btn-enviar">
+          <span class="pill__label">Enviar hoja de reclamación</span>
+        </button>
+        <p class="libro__nota"><span class="req">*</span> Campos obligatorios</p>
+      </div>
+
+      <div class="legales">
+        <p>La formulación del reclamo no impide acudir a otras vías de solución de controversias ni es requisito previo para interponer una denuncia ante el INDECOPI.</p>
+        <p>El proveedor debe dar respuesta al reclamo o queja en un plazo no mayor a quince (15) días hábiles, el cual es improrrogable.</p>
+      </div>
+    </form>
+
+    <!-- Confirmación -->
+    <section class="confirmacion" id="confirmacion" tabindex="-1" hidden aria-live="polite">
+      <svg class="confirmacion__icono" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="24" cy="24" r="21"/><path d="m15 24.5 6 6 12-13"/>
+      </svg>
+      <h2 class="confirmacion__titulo">¡Recibimos tu hoja de reclamación!</h2>
+      <p class="confirmacion__numero">Hoja N° <strong data-c="numero"></strong></p>
+      <dl class="confirmacion__datos">
+        <div><dt>Fecha y hora de registro</dt><dd data-c="fecha"></dd></div>
+        <div><dt>Respuesta a más tardar el</dt><dd data-c="limite"></dd></div>
+      </dl>
+      <p class="confirmacion__texto" data-c="correo"></p>
+      <a class="pill pill--boton" data-c="descarga" href="#" download>
+        <span class="pill__label">Descargar PDF</span>
+      </a>
+      <p class="confirmacion__texto confirmacion__texto--suave">Guarda tu número de hoja. Te responderemos en un plazo no mayor a quince (15) días hábiles.</p>
+      <a class="enlace" href="/">Volver al inicio</a>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <a href="/libro-de-reclamaciones" aria-current="page">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 6.5C10.2 5 7.6 4.4 3.5 4.5v13c4.1-.1 6.7.5 8.5 2 1.8-1.5 4.4-2.1 8.5-2v-13c-4.1-.1-6.7.5-8.5 2Z"/>
+        <path d="M12 6.5v13.1"/>
+      </svg>
+      Libro de Reclamaciones
+    </a>
+    <a href="/politica-de-privacidad">Política de privacidad</a>
+  </footer>
+
+  <script type="module" src="/js/libro.js"></script>
+</body>
+</html>

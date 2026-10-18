@@ -29,12 +29,22 @@ body {
   color: var(--cream);
   font-family: var(--font-display);
   -webkit-font-smoothing: antialiased;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Tonos derivados de la paleta (solo transparencias de los colores de marca) */
+:root {
+  --cream-08: rgba(237, 233, 230, .08);
+  --cream-16: rgba(237, 233, 230, .16);
+  --cream-45: rgba(237, 233, 230, .45);
+  --cream-75: rgba(237, 233, 230, .75);
+  --gold-16: rgba(214, 167, 78, .16);
 }
 
 /* ---------- Composición ---------- */
 .landing {
-  min-height: 100vh;
-  min-height: 100dvh;
+  flex: 1 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -113,6 +123,42 @@ body {
   outline: 3px solid var(--cream);
   outline-offset: 4px;
 }
+
+/* ---------- Header de páginas interiores ---------- */
+.site-header {
+  display: flex;
+  justify-content: center;
+  padding: clamp(1.4rem, 4vh, 2.2rem) 1rem 0;
+}
+.site-header__home { display: block; line-height: 0; border-radius: .5rem; }
+.site-header__home img { width: clamp(9.5rem, 22vw, 13rem); height: auto; }
+.site-header__home:focus-visible { outline: 3px solid var(--cream); outline-offset: 6px; }
+
+/* ---------- Footer (todas las páginas) ---------- */
+.site-footer {
+  flex-shrink: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: .6rem 1.6rem;
+  padding: 1.4rem 1rem calc(1.4rem + env(safe-area-inset-bottom));
+  border-top: 1px solid var(--cream-16);
+  font-size: .82rem;
+  font-weight: 600;
+}
+.site-footer a {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  color: var(--cream-75);
+  text-decoration: none;
+  border-radius: .4rem;
+  transition: color .2s ease;
+}
+.site-footer a:hover { color: var(--gold); }
+.site-footer a:focus-visible { outline: 2px solid var(--cream); outline-offset: 4px; }
+.site-footer svg { width: 1.35rem; height: 1.35rem; flex-shrink: 0; }
 
 /* ---------- Aviso (enlaces aún no configurados) ---------- */
 .toast {

@@ -1,0 +1,8 @@
+# Archivos que no se publican en Vercel
+.outbox/
+docs/
+tests/
+scripts/
+supabase/
+.env.example
+README.md

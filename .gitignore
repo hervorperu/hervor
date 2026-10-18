@@ -1,2 +1,8 @@
 .DS_Store
 .claude/
+node_modules/
+.env
+.env.local
+.env*.local
+.vercel/
+.outbox/

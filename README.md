@@ -1,67 +1,87 @@
-# Hervor — Landing "Próximamente"
+# Hervor — Web
 
-Página web de Hervor creada a partir del diseño de Canva (ver `docs/diseno-referencia.png`).
+Web de Hervor creada a partir del diseño de Canva (`docs/diseno-referencia.png`). Incluye:
+
+- Landing "Próximamente" con enlaces a Instagram, TikTok y la carta en PDF.
+- **Libro de Reclamaciones Virtual** (`/libro-de-reclamaciones`): genera el número de hoja correlativo,
+  guarda en Supabase, genera el PDF de la hoja y envía los correos.
+- Política de privacidad (`/politica-de-privacidad`).
+
+👉 Puesta en marcha, variables de entorno, Gmail, revisión de reclamos y migración a Resend:
+**[docs/libro-de-reclamaciones.md](docs/libro-de-reclamaciones.md)**
 
 ## Estructura
 
 ```
 hervor-web/
-├── index.html              Página principal (logo, "Próximamente", lema y 3 botones)
-├── css/styles.css          Estilos: colores, tipografías, responsive y animaciones
-├── js/config.js            ← AQUÍ se ponen los enlaces de Instagram, TikTok y la carta
-├── js/main.js              Conecta los botones con los enlaces / muestra aviso si faltan
-├── assets/img/
-│   ├── logo-hervor.png     Logo (extraído del diseño, fondo transparente)
-│   ├── favicon-32.png      Icono de la pestaña (llama del logo, "O vectorizada")
-│   ├── favicon-192.png     Icono en alta resolución (Android, accesos directos)
-│   └── apple-touch-icon.png  Icono al añadir la web a la pantalla de inicio del iPhone
-├── carta.pdf               Carta de Hervor (se abre en /carta.pdf)
-├── docs/diseno-referencia.png   Diseño original de Canva
-└── robots.txt
+├── index.html                    Landing (logo, "Próximamente", 3 botones, footer)
+├── libro-de-reclamaciones.html   Formulario del Libro de Reclamaciones (Anexo I)
+├── politica-de-privacidad.html   Política de privacidad (Ley 29733)
+├── carta.pdf                     Carta de Hervor
+├── css/styles.css                Tokens de marca, landing, header y footer
+├── css/paginas.css               Páginas interiores: formulario, avisos, confirmación
+├── js/config.js                  Enlaces de Instagram, TikTok y carta
+├── js/main.js                    Botones de la landing
+├── js/libro.js                   Formulario: validación, borrador, envío, confirmación
+├── api/                          Funciones serverless de Vercel
+│   ├── reclamos.js               POST: registra la hoja, PDF y correos
+│   ├── cron/mantenimiento.js     Cron diario: mantiene Supabase activo y reintenta correos
+│   └── admin/hoja.js             Descarga privada de la hoja con tu respuesta
+├── lib/                          Lógica compartida
+│   ├── reclamo-schema.js         Validación (la usan el navegador y el servidor)
+│   ├── fechas.js                 Hora de Lima, feriados de Perú, días hábiles
+│   ├── pdf.js                    PDF de la Hoja de Reclamación
+│   ├── proveedor.js              Datos fijos del proveedor y textos legales
+│   ├── servicio.js               Registro + envío de correos
+│   ├── storage/                  Supabase (producción) / memoria (pruebas)
+│   └── mail/                     Envío de correo: smtp (Gmail) / resend / outbox (pruebas)
+├── supabase/schema.sql           Tablas y función atómica del correlativo
+├── scripts/dev-server.mjs        Servidor local que imita a Vercel
+├── tests/                        Pruebas automáticas (npm test)
+├── assets/img/                   Logo y favicons
+├── vercel.json                   URLs limpias, cron, cabeceras de seguridad
+└── .env.example                  Plantilla de variables de entorno
 ```
 
-Es una web estática: HTML + CSS + JavaScript sin dependencias ni proceso de compilación.
+## Trabajar en tu laptop
 
-## Verla en tu laptop
-
-Desde la Terminal:
+Node.js está instalado en `~/.local/node`. Para usarlo en la Terminal, añádelo una vez a tu PATH:
 
 ```bash
-cd ~/Documents/Proyectos/hervor-web
-python3 -m http.server 5173
+echo 'export PATH="$HOME/.local/node/bin:$PATH"' >> ~/.zshrc && source ~/.zshrc
 ```
 
-Luego abre <http://localhost:5173> en el navegador. Para detener el servidor: `Ctrl + C`.
+Después:
 
-## Configurar los enlaces
+```bash
+cd ~/Documents/Proyectos/hervor-web && npm install && npm test
+```
 
-Edita `js/config.js` y rellena:
+Para probar sin servicios externos (los correos se ven en <http://localhost:5173/__outbox>):
 
-- `instagram`: URL del perfil de Instagram.
-- `tiktok`: URL del perfil de TikTok.
-- `carta`: ya apunta a `carta.pdf`. Para actualizar la carta basta con
-  reemplazar ese archivo por la nueva versión exportada de Canva (mismo nombre).
+```bash
+STORAGE_DRIVER=memory MAIL_PROVIDER=outbox MAIL_FROM_ADDRESS=prueba@example.com OWNER_EMAIL=prueba@example.com npm run dev
+```
 
-Mientras un enlace esté vacío, el botón muestra el aviso "¡Muy pronto!…".
+Para probar con Supabase y Gmail reales, copia `.env.example` como `.env.local`, rellena las claves y ejecuta `npm run dev`.
 
-## Colores y tipografías
+## Configurar los enlaces de la landing
 
-| Uso            | Valor                         |
-|----------------|-------------------------------|
-| Fondo          | `#452959` (morado)            |
-| Logo y botones | `#D6A74E` (dorado)            |
-| Textos         | `#EDE9E6` (crema)             |
-| Títulos        | Montserrat (Google Fonts)     |
-| Botones        | Nunito Sans (Google Fonts)    |
+En `js/config.js`: `instagram`, `tiktok` y `carta` (apunta a `carta.pdf`). Para actualizar la carta,
+reemplaza `carta.pdf` por la nueva versión con el mismo nombre.
 
-## Publicar en internet
+## Marca
 
-Al ser estática, se puede subir tal cual (la carpeta completa) a Netlify, Vercel,
-Cloudflare Pages o GitHub Pages, sin configuración de build. Después hay que
-apuntar el dominio (p. ej. el de Hervor) al servicio elegido.
+| Uso | Valor |
+|---|---|
+| Fondo | `#452959` (morado) |
+| Logo, botones, acentos y estados | `#D6A74E` (dorado) / `#E2B762` (hover) |
+| Textos y avisos | `#EDE9E6` (crema) / `#FBF7F1` (tinta) |
+| Tipografía | Montserrat; Nunito Sans en los botones |
 
-## Mejoras recomendadas
+Los estados (error, foco, deshabilitado) usan solo estos colores y sus transparencias. No se usa ningún rojo.
 
-- Sustituir `assets/img/logo-hervor.png` por el logo original en SVG o PNG de alta
-  resolución exportado desde Canva (el actual se recortó de la imagen del diseño).
-- Añadir una imagen para compartir en redes (`og:image`) de 1200×630 px.
+## Publicar
+
+Conecta el repositorio en Vercel (Framework preset: **Other**, sin comando de build), configura las
+variables de entorno (ver la guía) y despliega.
