@@ -12,7 +12,9 @@ hervor-web/
 ├── js/main.js              Conecta los botones con los enlaces / muestra aviso si faltan
 ├── assets/img/
 │   ├── logo-hervor.png     Logo (extraído del diseño, fondo transparente)
-│   └── favicon.png         Icono de la pestaña (llama del logo)
+│   ├── favicon-32.png      Icono de la pestaña (llama del logo, "O vectorizada")
+│   ├── favicon-192.png     Icono en alta resolución (Android, accesos directos)
+│   └── apple-touch-icon.png  Icono al añadir la web a la pantalla de inicio del iPhone
 ├── carta.pdf               Carta de Hervor (se abre en /carta.pdf)
 ├── docs/diseno-referencia.png   Diseño original de Canva
 └── robots.txt
