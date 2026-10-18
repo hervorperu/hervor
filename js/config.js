@@ -9,7 +9,7 @@
 window.HERVOR_CONFIG = {
   links: {
     instagram: "https://www.instagram.com/hervor_pe/", // p. ej. "https://www.instagram.com/TU_USUARIO/"
-    tiktok: "",    // p. ej. "https://www.tiktok.com/@TU_USUARIO"
+    tiktok: "https://www.tiktok.com/@hervor_pe", // p. ej. "https://www.tiktok.com/@TU_USUARIO"
     carta: "",     // p. ej. "assets/carta/carta-hervor.pdf"
   },
   pendingMessage: "¡Muy pronto! Este enlace estará disponible en breve.",
