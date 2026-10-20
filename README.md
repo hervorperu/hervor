@@ -74,7 +74,7 @@ reemplaza `carta.pdf` por la nueva versión con el mismo nombre.
 
 | Uso | Valor |
 |---|---|
-| Fondo | `#452959` (morado) |
+| Fondo | `#46295A` (morado) |
 | Logo, botones, acentos y estados | `#D6A74E` (dorado) / `#E2B762` (hover) |
 | Textos y avisos | `#EDE9E6` (crema) / `#FBF7F1` (tinta) |
 | Tipografía | Montserrat (SemiBold en los botones) |
