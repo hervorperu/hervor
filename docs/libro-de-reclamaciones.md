@@ -30,10 +30,16 @@ cómo revisar las hojas recibidas y cómo registrar tus respuestas.
    - Guarda la contraseña de la base de datos en un lugar seguro.
 2. En el proyecto: **SQL Editor → New query**. Pega todo el contenido de `supabase/schema.sql` y pulsa **Run**.
    Se crean las tablas `reclamos` y `contadores_hoja` y la función `registrar_reclamo`.
-3. En **Project Settings → API Keys** (o **Data API**) copia:
-   - **Project URL** → variable `SUPABASE_URL`
-   - **service_role** (secret) → variable `SUPABASE_SERVICE_ROLE_KEY`.
-     ⚠️ Esta clave es secreta: nunca la pongas en el código ni la compartas.
+3. Copia dos datos de Supabase:
+   - **Project URL** → variable `SUPABASE_URL`. Está en **Project Settings → Data API**
+     (o en el botón **Connect** de la página principal del proyecto). Tiene la forma `https://abcdefgh.supabase.co`.
+   - **Clave secreta** → variable `SUPABASE_SERVICE_ROLE_KEY`. Está en **Project Settings → API Keys**:
+     - pestaña **API Keys** → sección **Secret keys** → pulsa el ojo o **Copy** en la clave `default`
+       (empieza por `sb_secret_…`); si no hay ninguna, pulsa **Add new secret key**;
+     - o bien la pestaña **Legacy API Keys** → clave **service_role** (empieza por `eyJ…`).
+     Cualquiera de las dos sirve. **No** uses la *publishable* / *anon*: esa es pública y no tiene permisos.
+     ⚠️ La clave secreta nunca va en el código ni se comparte (tampoco por chat).
+   Pégalas solo en tu archivo `.env.local` (para probar en tu laptop) y en Vercel.
 
 > **Plan gratuito.** Supabase pausa los proyectos gratis tras 7 días sin actividad. El cron diario
 > (`/api/cron/mantenimiento`) hace una consulta cada día para mantenerlo activo. Además, cada hoja
