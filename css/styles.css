@@ -11,7 +11,7 @@
   --ink: #fbf7f1;         /* texto de los botones */
 
   --font-display: "Montserrat", system-ui, sans-serif;
-  --font-button: "Nunito Sans", system-ui, sans-serif;
+  --font-button: "Montserrat", system-ui, sans-serif; /* Montserrat SemiBold: fuente oficial */
 
   --pill-w: clamp(16rem, 27vw, 21rem);
   --pill-h: clamp(3.1rem, 5.2vw, 3.4rem);
@@ -97,8 +97,9 @@ body {
   background: var(--gold);
   color: var(--ink);
   font-family: var(--font-button);
-  font-weight: 800;
-  font-size: clamp(1rem, 1.45vw, 1.06rem);
+  font-weight: 600;
+  font-size: clamp(.95rem, 1.35vw, 1.02rem);
+  white-space: nowrap;
   text-decoration: none;
   box-shadow: 0 0 0 0 rgba(214, 167, 78, 0);
   transition: transform .25s ease, background-color .25s ease, box-shadow .25s ease;

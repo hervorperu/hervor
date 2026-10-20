@@ -77,7 +77,7 @@ reemplaza `carta.pdf` por la nueva versión con el mismo nombre.
 | Fondo | `#452959` (morado) |
 | Logo, botones, acentos y estados | `#D6A74E` (dorado) / `#E2B762` (hover) |
 | Textos y avisos | `#EDE9E6` (crema) / `#FBF7F1` (tinta) |
-| Tipografía | Montserrat; Nunito Sans en los botones |
+| Tipografía | Montserrat (SemiBold en los botones) |
 
 Los estados (error, foco, deshabilitado) usan solo estos colores y sus transparencias. No se usa ningún rojo.
 
