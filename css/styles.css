@@ -63,11 +63,11 @@ body {
 .landing__title {
   margin: clamp(2.5rem, 7vh, 4.5rem) 0 0;
   font-weight: 600;  /* Montserrat SemiBold */
-  font-size: clamp(1.45rem, 3vw, 2.3rem);
-  line-height: 1.25;
+  font-size: clamp(1.7rem, 3.4vw, 2.6rem);
+  line-height: 1.2;
   letter-spacing: 0.005em;
+  text-wrap: balance;
 }
-.landing__title span { display: block; }
 
 .landing__tagline {
   margin: clamp(2rem, 6vh, 3.6rem) 0 0;
@@ -203,7 +203,7 @@ body {
 @media (max-width: 600px) {
   .landing { justify-content: flex-start; padding-top: 18vh; }
   .landing__logo { width: min(78vw, 22rem); }
-  .landing__title { margin-top: 2.4rem; font-size: clamp(1.1rem, 6vw, 1.55rem); }
+  .landing__title { margin-top: 2.4rem; font-size: clamp(1.35rem, 7.2vw, 1.9rem); }
   .landing__tagline { margin-top: 2rem; }
 }
 
